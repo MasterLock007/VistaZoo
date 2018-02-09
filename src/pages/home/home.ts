@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Reloj } from '../clases/reloj';
 import { RelojFactory } from '../clases/relojFactory';
+import { ToggleButton } from '../clases/ToggleButton';
 import { isString } from 'ionic-angular/util/util';
 import { _document } from '@angular/platform-browser/src/browser';
 
@@ -36,6 +37,10 @@ export class HomePage {
 
   public coleccion:Array<Reloj> = [];
   public contador:any;
+
+ // public toogleButtons: any = [];
+
+  public objArrayToggleButtons: ToggleButton[] = [];
 
   private relojFactory:RelojFactory;
 
@@ -168,13 +173,13 @@ export class HomePage {
             console.log(data["title"],'Saved clicked');
             ///condicion para crear el boton 
             this.cont += 1;
-           
-            //const botones =[
-              // {id:this.cont,name: data.title}
-             //] 
-              
-            
-            
+            const idTemp = (this.objArrayToggleButtons.length) + 1;
+
+            this.objArrayToggleButtons.push(new ToggleButton(idTemp, data["title"]));
+
+            for (let entry of this.objArrayToggleButtons) {
+                console.log(entry);
+            }
           }
         }
       ]

@@ -35,7 +35,14 @@
             {{cole.segundo2}}{{cole.segundo}}
           </p>
           </label>
-      </div>
+    </div>
+
+    <div text-center>
+        <ion-item *ngFor="let objToggleButton of objArrayToggleButtons">
+          <ion-label>{{objToggleButton.tituloToogle}}</ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+    </div>
     <!--BOTON DE AGREGAR BOTONES XD -->
 
   
