@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>VistZoo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+      
+    <label >
+        
+        <h2 ion-text color="default" text-center>
+          {{hora2}}{{hora}} : {{minutos2}}{{minutos}} : {{segundos2}}{{segundos}}
+       </h2>
+      </label>
+    
+        <button (click)="start(tap)" ion-button color="primary" >Start</button>
+        <button (click)="lapso(hora,minutos,segundos)" ion-button color="danger">Lapso</button>
+        <button (click)="stop()" ion-button color="dark" >Stop</button>
+    
+
+    <div>
+        <ion-item (tap)="tapEvent($event)">
+            {{tap}} veces 
+          <button (click)="pause()" ion-button color="dark" outline round>Pause</button>
+  
+        </ion-item>
+    </div>
+    
+    <div text-center>
+        <label *ngFor="let cole of coleccion ">
+          <p>
+            {{cole.hora2}}{{cole.hora}} : 
+            {{cole.minuto2}}{{cole.minuto}} : 
+            {{cole.segundo2}}{{cole.segundo}}
+          </p>
+          </label>
+      </div>
+    <!--BOTON DE AGREGAR BOTONES XD -->
+
+  
+    <button ion-fab color="danger" block (click)="doPrompt()">+</button>
+
+<div id="botones">
+  
+</div>  
+ 
+</ion-content>
