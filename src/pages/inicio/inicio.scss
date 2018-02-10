@@ -1,0 +1,52 @@
+page-inicio {
+    
+     .fondo{
+         background-image: url('../assets/img/ini.jpeg');
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position-x :50%; 
+         //background-color: #ff9a3c;
+         .logo-row {
+             padding-top: 1px;
+             padding-right: 20px;
+           
+           }
+       
+           .logo{
+              
+              max-height: 280px;
+              max-width: 280px;
+             
+           }
+     }
+     ion-header img {
+         //opacity: 0.7;
+         padding: 50px;      
+         max-height: 400px;
+         max-width: 330px;
+    
+     }
+     ion-slides {
+         height: 300px;
+         position: absolute;
+         bottom: 0;
+  
+         ion-slide {
+             color :white;
+         }
+  
+         h4 {
+             font-weight: bold;
+             font-size: 40px;
+         }
+  
+         .swiper-pagination-bullet {
+             background :white;
+         }
+ 
+       
+     
+ 
+ }
+ }
+ 

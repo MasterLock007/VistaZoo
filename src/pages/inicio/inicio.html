@@ -1,0 +1,35 @@
+<ion-content padding class="fondo">
+  
+   <ion-row class="logo-row">
+       <ion-col></ion-col>
+       <ion-col width-67>
+         <img src="assets/img/VistazooCover.png" class="logo"/>
+
+       </ion-col>
+       <ion-col></ion-col>
+     </ion-row>
+
+ <ion-slides autoplay="2000" pager loop>
+       <ion-slide>
+           <h4>Welcome</h4>
+           <p>An app to record animal behavior</p>
+       </ion-slide>
+       <ion-slide>
+           <h4>It's easy</h4>
+           <p>Fast and intuitive interface</p>
+       </ion-slide>
+       <ion-slide>
+           <h4>Export</h4>
+           <p>Your data in an excel document</p>
+       </ion-slide>
+   </ion-slides>
+  
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+       <ion-row >
+            <ion-col ><button  (click)="abrir()" ion-button  large icon-only color="secondary" full >Start</button></ion-col>
+       </ion-row>
+    </ion-grid>
+</ion-footer>

@@ -1,0 +1,40 @@
+page-login {
+    .fondo{
+        background-image: url('../assets/img/login.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-x :55%; 
+
+    .item.item-input {
+        background-color: rgba(20, 20, 20, 0.521);
+        color:white;
+        
+         
+         
+        
+    }
+     
+    h4 {
+        font-weight: bold;
+        font-size: 50px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .logo-row {
+      padding-top: 1px;
+      padding-bottom: 1px;
+    }
+
+    .logo{
+       
+       max-height: 250px;
+       max-width: 250px;
+      
+    }
+
+    }
+}
+    
+
+

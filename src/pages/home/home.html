@@ -1,0 +1,49 @@
+<ion-header>
+<ion-navbar >
+    <ion-title>VistaZoo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+      
+    <label >
+        <h2 ion-text color="default" text-center>
+          {{hora2}}{{hora}} : {{minutos2}}{{minutos}} : {{segundos2}}{{segundos}}
+       </h2>
+      </label>
+    
+        <button (click)="start(tap)" ion-button color="primary" >Start</button>
+        <!--<button (click)="lapso(hora,minutos,segundos)" ion-button color="danger">Lapso</button>-->
+        <button (click)="stop()" ion-button color="dark" >Stop</button>
+        <button (click)="doPrompt()" ion-button color="secondary">add+</button>
+    
+<!--
+    <div>
+        <ion-item (tap)="tapEvent($event)">
+            {{tap}} veces 
+          <button (click)="pause()" ion-button color="dark" outline round>Pause</button>
+  
+        </ion-item>
+    </div>
+    -->
+    <div text-center>
+        <label *ngFor="let cole of coleccion ">
+          <p>
+            {{cole.hora2}}{{cole.hora}} : 
+            {{cole.minuto2}}{{cole.minuto}} : 
+            {{cole.segundo2}}{{cole.segundo}}
+          </p>
+          </label>
+    </div>
+
+    <div text-center>
+        <ion-item *ngFor="let objToggleButton of objArrayToggleButtons">
+          <ion-label>{{objToggleButton.tituloToogle}}</ion-label>
+          <ion-toggle  (ionChange)="lapso(hora,minutos,segundos,objToggleButton.tituloToogle)" ></ion-toggle>
+        </ion-item>
+    </div>
+   
+    <!--BOTON DE AGREGAR BOTONES XD -->
+    
+</ion-content>
