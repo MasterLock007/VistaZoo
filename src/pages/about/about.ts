@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
-import { AuthProvider } from '../../providers/auth/auth';
+import { NavController,AlertController } from 'ionic-angular';//se agrega AlertController
+import {PushOpButton} from '../clases/PushOpButton';//se importa la nueva clase
 
 
 @Component({
@@ -10,11 +9,67 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController, public auth: AuthProvider) {
+  constructor(public navCtrl: NavController, 
+              public alertCtrl: AlertController//se agrega variable de alerta en el constructor
+            ){
 
   }
-  cerrarSesion(){
-    this.auth.logout();
+
+  public objArrayPushOpButton: PushOpButton[] = [];
+  public contador:number = 0;
+  public titulo:string;
+
+
+/******************Area de Funciones***********************/
+
+//metodo para contar
+cuenta(nombre:string)
+{
+  this.contador +=1;
+  this.titulo=nombre;
 }
+
+
+
+
+  //metodo para agregar una alerta y un nuevo boton
+  agregaPush() {
+    let prompt = this.alertCtrl.create({
+      title: 'New Button',
+      message: "Add new button of frecuency",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: data => {
+            console.log(data["title"],'Saved clicked');
+            ///condicion para crear el boton 
+            
+            
+            const idTemp = (this.objArrayPushOpButton.length) + 1;
+            this.objArrayPushOpButton.push(new PushOpButton(idTemp, data["title"]));
+            
+            for (let entry of this.objArrayPushOpButton) {
+                console.log(entry);
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+}
+
+ 
 //Este codigo es de daniel aguilar
 }

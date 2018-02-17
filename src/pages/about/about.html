@@ -1,11 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Frecuency
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<button ion-button block (click)="cerrarSesion()">Cerrar Sesión</button>
+
+  <div text-center>
+  <button (click)="agregaPush()" ion-button  color="secondary">Add +</button>
+</div>
+  <br>
+  <br>
+
+<div text-center>
+  <label>
+    <h2>{{titulo}}:{{contador}}</h2>
+  </label>
+</div>
+
+<div>
+    <ion-list *ngFor="let objPushOpButton of objArrayPushOpButton">
+      <button (click)="cuenta(objPushOpButton.tituloPush)" ion-button block>{{objPushOpButton.tituloPush}}</button> <!--Aqui se agrean los botoenes-->
+    </ion-list>
+</div>
+
+
 </ion-content>
