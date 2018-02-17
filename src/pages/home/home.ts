@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Reloj } from '../clases/reloj';
 import { RelojFactory } from '../clases/relojFactory';
 import { ToggleButton } from '../clases/ToggleButton';
-import { isString } from 'ionic-angular/util/util';
-import { _document } from '@angular/platform-browser/src/browser';
+ 
 
 
 
@@ -19,11 +18,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
             relojFactory:RelojFactory,
-            public alertCtrl: AlertController
-            
-
-            
-            
+            public alertCtrl: AlertController 
   
   ) {
      
@@ -40,7 +35,7 @@ export class HomePage {
   public minutos2:number = 0;
   public hora2:number = 0;
 
-  public titulo:string;
+
   public coleccion:Array<Reloj> = [];
   public contador:any;
 
@@ -52,8 +47,7 @@ export class HomePage {
 
   public tap: number = 1;
 
-  public cont: number =0;
-
+ public nombre:string;
   
 
   tapEvent(e) 
@@ -112,17 +106,16 @@ export class HomePage {
               }
             }
           }
-        } }, 1000);
+        } }, 100);
     }
   }
 
-  lapso(hora, minutos, segundos,titulo)
+  lapso(hora, minutos, segundos,titulo:string)
   {
     let obj = this.relojFactory.nuevoReloj(
       this.hora, this.minutos, this.segundos,
-      this.segundos2, this.minutos2, this.hora2);
+      this.segundos2, this.minutos2, this.hora2,this.nombre=titulo);
       this.coleccion.push(obj);
-      
       console.log(titulo+"="+this.hora2+":"+this.hora+":"+this.minutos2+this.minutos+":"+this.segundos2+this.segundos);
 
       
@@ -136,11 +129,12 @@ export class HomePage {
     var m2 = this.minutos2;
     var s1 = this.segundos;
     var s2 = this.segundos2;
+    var tit = this.nombre;
 
     stop();
 
       this.relojFactory.nuevoReloj(this.hora = h1, this.minutos = m1, this.segundos = s1,
-      this.segundos2 = s2, this.minutos2 = m2, this.hora2 = h2
+      this.segundos2 = s2, this.minutos2 = m2, this.hora2 = h2, this.nombre=tit
    )
    stop()
   }    
@@ -182,7 +176,7 @@ export class HomePage {
           handler: data => {
             console.log(data["title"],'Saved clicked');
             ///condicion para crear el boton 
-            this.cont += 1;
+             
             
             const idTemp = (this.objArrayToggleButtons.length) + 1;
             this.objArrayToggleButtons.push(new ToggleButton(idTemp, data["title"]));
@@ -200,3 +194,9 @@ export class HomePage {
  
     
 }
+
+// sonido en botones
+//agregar botones redondos para frecuencias sin tiempo y debajo los labesl con el nombre del boton apretado
+//sonido programable para intervalos de tiempo, cad minuto quiero que suenes
+//centesimas de segundos, en el cronometro,
+//minutos segundos, centesima

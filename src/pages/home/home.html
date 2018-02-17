@@ -13,11 +13,14 @@
        </h2>
       </label>
     
-        <button (click)="start(tap)" ion-button color="primary" >Start</button>
+    <!-- Area de botones -->
+      <div text-center>
+        <button (click)="start(tap)" ion-button small color="primary" >Start</button>
         <!--<button (click)="lapso(hora,minutos,segundos)" ion-button color="danger">Lapso</button>-->
-        <button (click)="stop()" ion-button color="dark" >Stop</button>
-        <button (click)="doPrompt()" ion-button color="secondary">add+</button>
-    
+        <button (click)="stop()" ion-button small color="dark" >Reset</button>
+        <button ion-button small color="dark" >Pause</button>
+        <button (click)="doPrompt()" ion-button small color="secondary">Add +</button>
+    </div>
 <!--
     <div>
         <ion-item (tap)="tapEvent($event)">
@@ -28,22 +31,26 @@
     </div>
     -->
     <div text-center>
+      <ion-item *ngFor="let objToggleButton of objArrayToggleButtons">
+        <ion-label>{{objToggleButton.tituloToogle}}</ion-label>
+        <ion-toggle  (ionChange)="lapso(hora,minutos,segundos,objToggleButton.tituloToogle)" ></ion-toggle>
+      </ion-item>
+  </div>
+ 
+    <div text-center>
         <label *ngFor="let cole of coleccion ">
           <p>
+            {{cole.titulo}} =
             {{cole.hora2}}{{cole.hora}} : 
             {{cole.minuto2}}{{cole.minuto}} : 
             {{cole.segundo2}}{{cole.segundo}}
+            
           </p>
           </label>
     </div>
+  
 
-    <div text-center>
-        <ion-item *ngFor="let objToggleButton of objArrayToggleButtons">
-          <ion-label>{{objToggleButton.tituloToogle}}</ion-label>
-          <ion-toggle  (ionChange)="lapso(hora,minutos,segundos,objToggleButton.tituloToogle)" ></ion-toggle>
-        </ion-item>
-    </div>
-   
+  
     <!--BOTON DE AGREGAR BOTONES XD -->
     
 </ion-content>

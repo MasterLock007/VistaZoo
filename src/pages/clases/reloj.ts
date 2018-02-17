@@ -7,9 +7,11 @@ export class Reloj
     private segundo2:number;
     private minuto2:number;
     private hora2:number;
+    private titulo:string;
+   
 
     constructor(hora:number, minuto:number, segundo:number,
-         segundo2:number,minuto2:number, hora2:number)
+         segundo2:number,minuto2:number, hora2:number,titulo:string)
     {
         this.hora = hora;
         this.minuto = minuto;
@@ -18,6 +20,8 @@ export class Reloj
         this.segundo2 = segundo2;
         this.minuto2 = minuto2;
         this.hora2 = hora2;
+
+        this.titulo= titulo;
     }
 
     getHora():number
@@ -73,4 +77,15 @@ export class Reloj
     {
         this.hora2 = hora2;
     }
+
+    getTitulo():string
+    {
+        return this.titulo;
+    }
+    setTitulo(titulo:string)
+    {
+        this.titulo = titulo;
+    }
+
+  
 }
