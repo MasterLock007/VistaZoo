@@ -16,17 +16,20 @@ export class AboutPage {
   }
 
   public objArrayPushOpButton: PushOpButton[] = [];
-  public contador:number = 0;
+  public contador:number;
   public titulo:string;
+   
 
 
 /******************Area de Funciones***********************/
 
 //metodo para contar
-cuenta(nombre:string)
+cuenta(nombre:string,id:number,veces:number)
 {
-  this.contador +=1;
-  this.titulo=nombre;
+  this.titulo = nombre;
+  this.objArrayPushOpButton[id].setNumVeces(1);
+  this.contador = veces;
+  console.log(this.objArrayPushOpButton[id].getTituloPush()+" :"+"veces "+this.objArrayPushOpButton[id].getNumVeces());
 }
 
 
@@ -58,7 +61,7 @@ cuenta(nombre:string)
             
             
             const idTemp = (this.objArrayPushOpButton.length) + 1;
-            this.objArrayPushOpButton.push(new PushOpButton(idTemp, data["title"]));
+            this.objArrayPushOpButton.push(new PushOpButton(idTemp-1, data["title"]));
             
             for (let entry of this.objArrayPushOpButton) {
                 console.log(entry);
