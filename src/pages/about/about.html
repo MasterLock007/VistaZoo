@@ -9,18 +9,19 @@
 <ion-content padding>
 
   <div text-center>
+    <label>
+      <h1>{{titulo}} = {{contador + 1}}</h1>
+    </label>
+    <br>
+  
+  </div>
+  <div text-center>
   <button (click)="agregaPush()" ion-button medium color="secondary">Add +</button>
   <button ion-button  color="primary">Export</button>
 </div>
   <br>
   <br>
-<div text-center>
-  <label>
-    <h1>{{titulo}} = {{contador + 1}}</h1>
-  </label>
-  <br>
 
-</div>
 
 <div>
     <ion-list *ngFor="let objPushOpButton of objArrayPushOpButton">

@@ -65,7 +65,7 @@ export class HomePage {
   if (this.contador == undefined)
     {
       this.contador = setInterval(()=>{
-        if (this.hora2 == 2 && this.hora == 3 && this.minutos2 == 5 && this.minutos == 9 && this.segundos2 == 5 && this.segundos == 9)
+        if (this.hora2 == 5 && this.hora == 9 && this.minutos2 == 5 && this.minutos == 9 && this.segundos2 == 9 && this.segundos == 9)
         {
           this.hora = 0;
           this.minutos = 0;
@@ -82,7 +82,7 @@ export class HomePage {
             this.segundos = 0;
             this.segundos2 +=1;
 
-            if(this.segundos2 == 6)
+            if(this.segundos2 == 10)
             {
               this.segundos2 = 0;
               this.minutos += 1;
@@ -101,12 +101,17 @@ export class HomePage {
                   {
                     this.hora = 0;
                     this.hora2 += 1;
+
+                    if (this.hora2 == 6) 
+                  {
+                    this.hora2 = 0;
+                  }
                   }
                 }
               }
             }
           }
-        } }, 100);
+        } }, 10);
     }
   }
 
