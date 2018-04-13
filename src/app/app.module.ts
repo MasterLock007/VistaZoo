@@ -21,6 +21,11 @@ import { AuthProvider } from '../providers/auth/auth';
 
 
 
+
+import { FileService } from '../services/file.service';
+import {HttpModule} from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+
 //*****************************************************
 
 export const firebaseConfig = {
@@ -45,10 +50,13 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot()
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,6 +71,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FileService,
     AuthProvider,
     RelojFactory
   ]

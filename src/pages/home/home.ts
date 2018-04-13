@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, Platform } from 'ionic-angular';
 import { Reloj } from '../clases/reloj';
 import { RelojFactory } from '../clases/relojFactory';
 import { ToggleButton } from '../clases/ToggleButton';
  
+import { FileService } from '../../services/file.service';
 
 
 
@@ -15,16 +16,55 @@ import { ToggleButton } from '../clases/ToggleButton';
 
 })
 export class HomePage {
+  storageDirectory: string= '';
+ 
 
   constructor(public navCtrl: NavController,
+    public navParams: NavParams,
             relojFactory:RelojFactory,
-            public alertCtrl: AlertController 
-  
-  ) {
-     
+            public platform: Platform,
+            
+            public alertCtrl: AlertController,private fileService: FileService  )
+   {
     this.relojFactory = relojFactory;
-     
+    this.storageDirectory = fileService.getStorageDirectory();
+  }
+  
+  
+  saveFile() {
+   
 
+    var nombre:string="";
+   
+    for (let index = 0; index <this.objArrayToggleButtons.length; index++) {                 
+    nombre+="<tr><td>"+    this.objArrayToggleButtons[index].getTituloToggle()      +"</td><td>"+    this.coleccion[index].getHora2()+this.coleccion[index].getHora()+":"+this.coleccion[index].getMinuto2()+this.coleccion[index].getMinuto()+":"+this.coleccion[index].getSegundo2()+this.coleccion[index].getSegundo()   +"</td></tr>"
+    console.log(this.coleccion[index].getHora2()+this.coleccion[index].getHora()+":"+this.coleccion[index].getMinuto2()+this.coleccion[index].getMinuto()+":"+this.coleccion[index].getSegundo2()+this.coleccion[index].getSegundo());
+    
+    }
+
+
+
+    let table = "<table>"+
+                   "<thead>"+
+                      "<tr>"+
+                         "<th>"+
+                                "Action"+
+                        " </th>"+
+                         "<th>"+
+                                 " Time"+
+                      "  </th>"+
+                          "<th>"+
+                                  "End Time"+
+                        "</th>"+
+                      "</tr>"+
+                  "</thead>"+
+                  "<tbody> "+
+                            nombre+
+                         //   +tiempo+
+                //  "<tr>"+veces+"</tr>"+
+                  "</tbody>"+
+                 "</table>";
+      this.fileService.save(this.storageDirectory, "export.xls", "application/vnd.ms-excel", table);
   }
 
   public hora:number = 0;
@@ -196,7 +236,7 @@ export class HomePage {
     prompt.present();
 }
 
- 
+
     
 }
 
