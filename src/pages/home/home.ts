@@ -3,8 +3,9 @@ import { NavController, AlertController, NavParams, Platform } from 'ionic-angul
 import { Reloj } from '../clases/reloj';
 import { RelojFactory } from '../clases/relojFactory';
 import { ToggleButton } from '../clases/ToggleButton';
- 
-import { FileService } from '../../services/file.service';
+import { ToastController } from 'ionic-angular'; 
+import { LoadingController } from 'ionic-angular';
+//import { FileService } from '../../services/file.service';
 
 
 
@@ -16,21 +17,22 @@ import { FileService } from '../../services/file.service';
 
 })
 export class HomePage {
-  storageDirectory: string= '';
+  storageDirectory: string= 'file:///';
  
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
             relojFactory:RelojFactory,
             public platform: Platform,
-            
-            public alertCtrl: AlertController,private fileService: FileService  )
+            public toastCtrl: ToastController,
+            public loadingCtrl: LoadingController,
+            public alertCtrl: AlertController,/*private fileService: FileService*/ )
    {
     this.relojFactory = relojFactory;
-    this.storageDirectory = fileService.getStorageDirectory();
+    //this.storageDirectory = fileService.getStorageDirectory();
   }
   
-  
+  /*
   saveFile() {
    
 
@@ -41,9 +43,6 @@ export class HomePage {
     console.log(this.coleccion[index].getHora2()+this.coleccion[index].getHora()+":"+this.coleccion[index].getMinuto2()+this.coleccion[index].getMinuto()+":"+this.coleccion[index].getSegundo2()+this.coleccion[index].getSegundo());
     
     }
-
-
-
     let table = "<table>"+
                    "<thead>"+
                       "<tr>"+
@@ -65,7 +64,9 @@ export class HomePage {
                   "</tbody>"+
                  "</table>";
       this.fileService.save(this.storageDirectory, "export.xls", "application/vnd.ms-excel", table);
-  }
+  
+    }
+    */
 
   public hora:number = 0;
   public minutos:number = 0;
@@ -151,7 +152,7 @@ export class HomePage {
               }
             }
           }
-        } }, 10);
+        } }, 9.5);
     }
   }
 
@@ -193,16 +194,33 @@ export class HomePage {
     this.segundos2 = 0;
     this.minutos2 = 0;
     this.hora2 = 0;
-
     this.contador = null;
-
   }
+  reset ()
+  {
+    clearInterval(this.contador);
+    this.hora = 0;
+    this.minutos = 0;
+    this.segundos = 0;
+    this.segundos2 = 0;
+    this.minutos2 = 0;
+    this.hora2 = 0;
+       
+    this.contador = null;
+    this.objArrayToggleButtons = [];
+    this.nombre="";
+    this.coleccion = [];
+    this.toastTittle('top',1);
+    this.newVistazooLoad();
+  }
+
+ 
   
   //momentos de la alerta que guarda botones
   doPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'New switch',
-      message: "Agrega el nombre al switch",
+      message: "name to switch",
       inputs: [
         {
           name: 'title',
@@ -220,15 +238,14 @@ export class HomePage {
           text: 'Ok',
           handler: data => {
             console.log(data["title"],'Saved clicked');
-            ///condicion para crear el boton 
-             
-            
-            const idTemp = (this.objArrayToggleButtons.length) + 1;
-            this.objArrayToggleButtons.push(new ToggleButton(idTemp, data["title"]));
-            
-            for (let entry of this.objArrayToggleButtons) {
-                console.log(entry);
-            }
+            if(data["title"].length==0){
+
+            this.toastTittle('top',0);
+              
+            }else{
+              const idTemp = (this.objArrayToggleButtons.length) + 1;
+              this.objArrayToggleButtons.push(new ToggleButton(idTemp, data["title"]));
+            }     
           }
         }
       ]
@@ -236,6 +253,29 @@ export class HomePage {
     prompt.present();
 }
 
+toastTittle(position: string,flag: number) {
+  let message='';
+  if(flag==1){
+   message='New VistaZoo!!' ;
+  }else{
+    message='Mmmm... invalid title';
+  }
+  let toast = this.toastCtrl.create({
+    message,
+    duration: 1000,
+    position: position
+  });
+
+toast.present(toast);
+}
+
+newVistazooLoad() {
+  const loader = this.loadingCtrl.create({
+    content: "Please wait...",
+    duration: 1000
+  });
+  loader.present();
+}
 
     
 }

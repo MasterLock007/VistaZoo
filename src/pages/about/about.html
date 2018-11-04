@@ -16,18 +16,25 @@
   
   </div>
   <div text-center>
-  <button (click)="agregaPush()" ion-button medium color="secondary">Add +</button>
-  <button ion-button  color="primary">Export</button>
+  <button (click)="agregaPush()" ion-button medium color="secondary">Add</button>
+  <button (click)="reset()" ion-button color="dark">Reset</button>
+  <button ion-button  color="danger">Finish</button>
 </div>
-  <br>
-  <br>
+ <br>
+ <br>
+ 
+    
 
-
-<div>
-    <ion-list *ngFor="let objPushOpButton of objArrayPushOpButton">
-      <button (click)="cuenta(objPushOpButton.tituloPush,objPushOpButton.idPush,objPushOpButton.numVeces)" ion-button block>{{objPushOpButton.tituloPush}}</button> <!--Aqui se agrean los botoenes-->
-    </ion-list>
-</div>
-
-
+     
+       
+<ion-grid>
+<ion-row >
+  <ion-col *ngFor="let objPushOpButton of objArrayPushOpButton" > 
+      <button ion-button medium color="primary"  (click)="cuenta(objPushOpButton.tituloPush,objPushOpButton.idPush,objPushOpButton.numVeces)" >{{objPushOpButton.tituloPush}}</button> <!--Aqui se agrean los botoenes-->
+  </ion-col>
+</ion-row>
+</ion-grid>
+ 
+ 
+        
 </ion-content>

@@ -1,12 +1,15 @@
 page-home {
    h2 { 
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
-    color: rgb(228, 66, 66);
+    color:black;
    }
    .toolbar-background {
     background-color: rgba(52, 214, 71, 0.685);
   }
-  
+  padding: 100px;
+  size{
+        font-size: 20px;
+  }
 }

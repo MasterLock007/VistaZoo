@@ -14,8 +14,7 @@ import {AuthProvider} from '../providers/auth/auth';
 })
 export class MyApp {
   rootPage:any = 'InicioPage';
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private auth: AuthProvider) {
+  constructor(public platform :Platform, statusBar: StatusBar, splashScreen: SplashScreen,private auth: AuthProvider) {
     platform.ready().then(() => {
       
       this.auth.Session.subscribe(session=>{

@@ -2,11 +2,11 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <ion-navbar>
       <ion-title>
-        Vista Zoo
+        VistaZoo
       </ion-title>
       <ion-buttons end>
-        <button ion-button icon-only (click)="saveFile()">
-            <ion-icon name="download"></ion-icon>
+        <button ion-button icon-only   (click)="reset()">
+            <ion-icon name="eye"></ion-icon>
           </button>
       </ion-buttons>
     </ion-navbar>
@@ -23,22 +23,16 @@
     
     <!-- Area de botones -->
       <div text-center>
-        <button (click)="start(tap)" ion-button small color="primary" >Start</button>
+          <button (click)="doPrompt()" ion-button medium color="secondary">Add</button>
+        <button (click)="start(tap)" ion-button medium color="primary" >Start</button>
         <!--<button (click)="lapso(hora,minutos,segundos)" ion-button color="danger">Lapso</button>-->
-        <button (click)="stop()" ion-button small color="dark" >Reset</button>
-        <button ion-button small color="dark" >Pause</button>
-        <button (click)="doPrompt()" ion-button small color="secondary">Add +</button>
+        <button (click)="stop()" ion-button medium color="dark" >Stop</button>
+        
+        <button (click)="saveFile()" ion-button medium color="danger" >Finish</button>
+        
     </div>
-<!--
+ 
     <div>
-        <ion-item (tap)="tapEvent($event)">
-            {{tap}} veces 
-          <button (click)="pause()" ion-button color="dark" outline round>Pause</button>
-  
-        </ion-item>
-    </div>
-    -->
-    <div text-center>
       <ion-item *ngFor="let objToggleButton of objArrayToggleButtons">
         <ion-label>{{objToggleButton.tituloToogle}}</ion-label>
         <ion-toggle  (ionChange)="lapso(hora,minutos,segundos,objToggleButton.tituloToogle)" ></ion-toggle>
@@ -59,6 +53,6 @@
   
 
   
-    <!--BOTON DE AGREGAR BOTONES XD -->
+   
     
 </ion-content>

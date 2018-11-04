@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,AlertController } from 'ionic-angular';//se agrega AlertController
 import {PushOpButton} from '../clases/PushOpButton';//se importa la nueva clase
-
+import { ToastController } from 'ionic-angular'; 
 
 @Component({
   selector: 'page-about',
@@ -10,7 +10,8 @@ import {PushOpButton} from '../clases/PushOpButton';//se importa la nueva clase
 export class AboutPage {
 
   constructor(public navCtrl: NavController, 
-              public alertCtrl: AlertController//se agrega variable de alerta en el constructor
+              public toastCtrl: ToastController,
+              public alertCtrl: AlertController,//se agrega variable de alerta en el constructor
             ){
 
   }
@@ -26,14 +27,13 @@ export class AboutPage {
 //metodo para contar
 cuenta(nombre:string,id:number,veces:number)
 {
+ 
   this.titulo = nombre;
   this.objArrayPushOpButton[id].setNumVeces(1);
   this.contador = veces;
   console.log(this.objArrayPushOpButton[id].getTituloPush()+" :"+"veces "+this.objArrayPushOpButton[id].getNumVeces());
+  
 }
-
-
-
 
   //metodo para agregar una alerta y un nuevo boton
   agregaPush() {
@@ -57,15 +57,17 @@ cuenta(nombre:string,id:number,veces:number)
           text: 'Ok',
           handler: data => {
             console.log(data["title"],'Saved clicked');
-            ///condicion para crear el boton 
-            
+             
+            if(data["title"].length==0){
+
+              this.toastTittle('top');
+                
+              }else{
             
             const idTemp = (this.objArrayPushOpButton.length) + 1;
             this.objArrayPushOpButton.push(new PushOpButton(idTemp-1, data["title"]));
             
-            for (let entry of this.objArrayPushOpButton) {
-                console.log(entry);
-            }
+            } 
           }
         }
       ]
@@ -73,6 +75,20 @@ cuenta(nombre:string,id:number,veces:number)
     prompt.present();
 }
 
+reset(){
+  this.objArrayPushOpButton= [];
+  this.contador = undefined;
+  this.titulo="";
+}
+toastTittle(position: string) {
+  let toast = this.toastCtrl.create({
+    message: 'Mmmm... invalid title',
+    duration: 1000,
+    position: position
+  });
+
+toast.present(toast);
+}
  
 //Este codigo es de daniel aguilar
 }
