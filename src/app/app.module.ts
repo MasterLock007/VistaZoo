@@ -2,6 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+ 
+ 
 //************paginas agregadas************+ */
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -12,7 +14,7 @@ import { RelojFactory } from '../pages/clases/relojFactory';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+ 
 //*************+aoutenticacion**********************
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -27,6 +29,8 @@ import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 
 //*****************************************************
+ 
+ 
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCSFpmGhwElujuvxiBMcXTxYvP2NLLyptU",
@@ -73,7 +77,9 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FileService,
     AuthProvider,
-    RelojFactory
+    RelojFactory,
+    IonicErrorHandler,
+    
   ]
 })
 export class AppModule {}
